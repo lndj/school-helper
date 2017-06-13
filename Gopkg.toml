@@ -1,0 +1,22 @@
+[[constraint]]
+  branch = "master"
+  name = "golang.org/x/sys"
+
+[[constraint]]
+  branch = "master"
+  name = "gopkg.in/gin-gonic/gin.v1"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/silenceper/wechat"
+  source = "https://github.com/silenceper/wechat.git"
+
+
+ [[constraint]]
+   branch = "master"
+   name = "github.com/go-redis/redis"
+
+ [[constraint]]
+   branch = "master"
+   name = "github.com/olebedev/config"
+   source = "https://github.com/olebedev/config.git"
