@@ -2,7 +2,7 @@ package wechat
 
 import (
 	"github.com/silenceper/wechat/message"
-	"study/outside"
+	"school-helper/outside"
 )
 
 func ReplyText(content string) *message.Reply {

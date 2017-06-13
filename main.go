@@ -2,7 +2,7 @@ package main
 
 import (
 	"gopkg.in/gin-gonic/gin.v1"
-	"study/wechat"
+	"school-helper/wechat"
 )
 
 func main() {

@@ -1,6 +1,8 @@
 package wechat
 
-import "github.com/silenceper/wechat/message"
+import (
+	"github.com/silenceper/wechat/message"
+)
 
 func ReplyNews(title, description, pic_url, url string) *message.Reply {
 
