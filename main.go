@@ -3,9 +3,11 @@ package main
 import (
 	"encoding/json"
 	"gopkg.in/gin-gonic/gin.v1"
-	"net/http"
 	"os"
-	"school-helper/wechat"
+	"fmt"
+	"runtime"
+	"school-helper/router"
+	"school-helper/router/middleware"
 )
 
 const defaultPort = "8080"
@@ -18,20 +20,23 @@ var (
 )
 
 func main() {
-	r := gin.Default()
+	ConfigRuntime()
+	startGin()
+}
 
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
-	r.StaticFile("/favicon.ico", "./assets/favicon.ico")
+func ConfigRuntime() {
+	nuCPU := runtime.NumCPU()
+	runtime.GOMAXPROCS(nuCPU)
+	fmt.Printf("Running with %d CPUs\n", nuCPU)
+}
 
-	r.Any("/wechat", wechat.WechatHandler)
+func startGin() {
+	env := os.Getenv("ENV")
+	if env != "development" {
+		gin.SetMode(gin.ReleaseMode)
+	}
 
-	r.GET("/", func(c *gin.Context) {
-		c.String(200, "This is a Wechat Server, powered by Golang.")
-	})
+	r := router.Load(middleware.InitRedis())
 
 	r.Run(":" + port()) // listen and serve on 0.0.0.0:8080
 }
