@@ -29,9 +29,8 @@ func NewConfig() (*cg.Config, error) {
 	cfg.Env()
 
 	//根据当前环境变量获取配置
-	env, err := cfg.String("ENV")
-
-	if err != nil {
+	env := os.Getenv("ENV")
+	if len(env) == 0 {
 		log.Fatalf("Get env error:%v", err)
 		return nil, errors.New("Get ENV error:%v", err)
 	}
