@@ -2,12 +2,14 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"gopkg.in/gin-gonic/gin.v1"
 	"os"
-	"fmt"
 	"runtime"
 	"school-helper/router"
 	"school-helper/router/middleware"
+
+	_ "school-helper/store"
 )
 
 const defaultPort = "8080"
