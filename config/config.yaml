@@ -1,7 +1,10 @@
 development:
   redis:
-    host: 10.221.83.94
-    port: 6389
+    addr: 127.0.0.1:6389
+    password: "luoning"
     db: 0
-
-ENV:
+production:
+  redis:
+    addr: 127.0.0.1:6389
+    password: "luoning"
+    db: 0

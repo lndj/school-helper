@@ -3,13 +3,17 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/gin-gonic/gin.v1"
 	"os"
 	"runtime"
+
+	"github.com/labstack/gommon/log"
+	"gopkg.in/gin-gonic/gin.v1"
+
 	"school-helper/router"
 	"school-helper/router/middleware"
 
-	_ "school-helper/store"
+	"school-helper/config"
+	"school-helper/store"
 )
 
 const defaultPort = "8080"
@@ -23,7 +27,9 @@ var (
 
 func main() {
 	ConfigRuntime()
-	startGin()
+	InitConfig()
+	InitStore()
+	StartGin()
 }
 
 func ConfigRuntime() {
@@ -32,7 +38,21 @@ func ConfigRuntime() {
 	fmt.Printf("Running with %d CPUs\n", nuCPU)
 }
 
-func startGin() {
+//Init the Configure instance
+func InitConfig() {
+	err := config.InitConfigInstance()
+	if err != nil {
+		log.Fatalf("Init config error: %v", err)
+	}
+}
+
+//Init Storage instance
+func InitStore() {
+	//redis
+	store.InitRedisClient()
+}
+
+func StartGin() {
 	env := os.Getenv("ENV")
 	if env != "development" {
 		gin.SetMode(gin.ReleaseMode)

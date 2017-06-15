@@ -1,47 +1,33 @@
 package config
 
 import (
-	"github.com/labstack/gommon/log"
-	"github.com/murlokswarm/errors"
 	cg "github.com/olebedev/config"
 	"io/ioutil"
 	"os"
 )
 
-type Config struct {
-	Content *cg.Config
-}
+var Configure *cg.Config
 
-func NewConfig() (*cg.Config, error) {
+func InitConfigInstance() error {
 	path, _ := os.Getwd()
 	cfgFile, err := ioutil.ReadFile(path + "/config/config.yaml")
 	if err != nil {
-		log.Fatalf("Read yaml file error:%v", err)
-		return nil, errors.New("Read yaml file error:%v", err)
+		return err
 	}
-
 	cfg, err := cg.ParseYaml(string(cfgFile))
-
 	if err != nil {
-		log.Fatalf("Parse yaml file error:%v", err)
-		return nil, errors.New("Parse yaml file error:%v", err)
+		return err
 	}
-	cfg.Env()
-
 	//根据当前环境变量获取配置
 	env := os.Getenv("ENV")
 	if len(env) == 0 {
-		log.Fatalf("Get env error:%v", err)
-		return nil, errors.New("Get ENV error:%v", err)
+		return err
 	}
 
-	ct := new(Config)
-	ct.Content, err = cfg.Get(env)
-
+	Configure, err = cfg.Get(env)
 	if err != nil {
-		log.Fatalf("Get config error:%v", err)
-		return nil, errors.New("Get config error:%v", err)
+		return err
 	}
 
-	return ct.Content, nil
+	return nil
 }

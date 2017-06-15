@@ -1,8 +1,10 @@
 package router
 
 import (
+	"fmt"
 	"gopkg.in/gin-gonic/gin.v1"
 	"net/http"
+	"school-helper/config"
 	"school-helper/wechat"
 )
 
@@ -25,6 +27,9 @@ func Load(middleware ...gin.HandlerFunc) *gin.Engine {
 	r.Any("/wechat", wechat.WechatHandler)
 
 	r.GET("/", func(c *gin.Context) {
+
+		fmt.Println(config.Configure.String("redis.addr"))
+
 		c.String(200, "This is a Wechat Server, powered by Golang.")
 	})
 

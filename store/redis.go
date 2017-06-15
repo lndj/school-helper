@@ -1,15 +1,26 @@
 package store
 
-import "github.com/go-redis/redis"
+import (
+	"github.com/go-redis/redis"
+	"school-helper/config"
+)
 
 var RedisClient *redis.Client
 
-func init() {
+func InitRedisClient() error {
+
+	redisConfig, err := config.Configure.Map("redis")
+	if err != nil {
+		return err
+	}
+
 	option := redis.Options{
-		Addr:     "127.0.0.1:6389",
-		Password: "luoning",
-		DB:       0,
+		Addr:     string(redisConfig["addr"]),
+		Password: string(redisConfig["password"]),
+		DB:       int(redisConfig["db"]),
 		PoolSize: 10,
 	}
 	RedisClient = redis.NewClient(&option)
+
+	return nil
 }
