@@ -15,9 +15,9 @@ func InitRedisClient() error {
 	}
 
 	option := redis.Options{
-		Addr:     string(redisConfig["addr"]),
-		Password: string(redisConfig["password"]),
-		DB:       int(redisConfig["db"]),
+		Addr:     redisConfig["addr"].(string),
+		Password: redisConfig["password"].(string),
+		DB:       redisConfig["db"].(int),
 		PoolSize: 10,
 	}
 	RedisClient = redis.NewClient(&option)

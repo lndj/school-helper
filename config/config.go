@@ -4,13 +4,17 @@ import (
 	cg "github.com/olebedev/config"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 var Configure *cg.Config
 
 func InitConfigInstance() error {
-	path, _ := os.Getwd()
-	cfgFile, err := ioutil.ReadFile(path + "/config/config.yaml")
+	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	if err != nil {
+		os.Exit(9)
+	}
+	cfgFile, err := ioutil.ReadFile(dir + "/config/config.yaml")
 	if err != nil {
 		return err
 	}

@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"gopkg.in/gin-gonic/gin.v1"
 	"net/http"
+	"os"
+	"path/filepath"
 	"school-helper/config"
 	"school-helper/wechat"
 )
@@ -22,7 +24,12 @@ func Load(middleware ...gin.HandlerFunc) *gin.Engine {
 			"message": "pong",
 		})
 	})
-	r.StaticFile("/favicon.ico", "./assets/favicon.ico")
+	//TODO 统一获取
+	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	if err != nil {
+		os.Exit(9)
+	}
+	r.StaticFile("/favicon.ico", dir+"/assets/favicon.ico")
 
 	r.Any("/wechat", wechat.WechatHandler)
 
