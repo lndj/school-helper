@@ -5,6 +5,7 @@ import (
 	"github.com/silenceper/wechat"
 	"github.com/silenceper/wechat/message"
 	"gopkg.in/gin-gonic/gin.v1"
+	"school-helper/config"
 )
 
 //处理微信相关的逻辑
@@ -12,13 +13,18 @@ import (
 //之后微信接受到消息，需要处理业务逻辑，分相应的业务到相应的模块
 func WechatHandler(c *gin.Context) {
 	//配置微信参数
-	config := &wechat.Config{
-		AppID:          "wx11bde9f66f325e43",
-		AppSecret:      "36a63c535943521c74a0e2594f424d0e",
-		Token:          "luoning",
-		EncodingAESKey: "your encoding aes key",
+	appID, _ := config.Configure.String("WECHAT_APP_ID")
+	appSecret, _ := config.Configure.String("WECHAT_APP_SECRET")
+	token, _ := config.Configure.String("WECHAT_TOKEN")
+	encodingAESKey, _ := config.Configure.String("WECHAT_AES_KEY")
+
+	wechatOption := &wechat.Config{
+		AppID:          appID,
+		AppSecret:      appSecret,
+		Token:          token,
+		EncodingAESKey: encodingAESKey,
 	}
-	wc := wechat.NewWechat(config)
+	wc := wechat.NewWechat(wechatOption)
 
 	// 传入request和responseWriter
 	server := wc.GetServer(c.Request, c.Writer)

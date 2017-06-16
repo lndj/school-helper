@@ -19,9 +19,6 @@ func init() {
 	cfg, err := cg.ParseYaml(string(cfgFile))
 	checkErr(err)
 
-	//Parse the Env into config
-	cfg.Env()
-
 	//Get config by environment
 	env := os.Getenv("ENV")
 	if len(env) == 0 {
@@ -29,6 +26,8 @@ func init() {
 	}
 
 	Configure, err = cfg.Get(env)
+	//Parse the Env into config
+	Configure.Env()
 	checkErr(err)
 }
 
