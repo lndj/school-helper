@@ -7,6 +7,8 @@ import (
 
 var RedisClient *redis.Client
 
+var RedisNil = redis.Nil
+
 func init() {
 	redisConfig, err := config.Configure.Map("redis")
 	if err != nil {

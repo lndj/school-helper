@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"os"
 	"runtime"
@@ -9,17 +8,9 @@ import (
 	"gopkg.in/gin-gonic/gin.v1"
 
 	"school-helper/router"
-	"school-helper/router/middleware"
 )
 
 const defaultPort = "8080"
-
-var (
-	msgInvalidJSON     = "Invalid JSON format"
-	msgInvalidJSONType = func(e *json.UnmarshalTypeError) string {
-		return "Expected " + e.Value + " but given type is " + e.Type.String() + " in JSON"
-	}
-)
 
 func main() {
 	ConfigRuntime()
@@ -34,13 +25,16 @@ func ConfigRuntime() {
 
 func StartGin() {
 	env := os.Getenv("ENV")
-	if env != "development" {
+	if env == "production" {
 		gin.SetMode(gin.ReleaseMode)
 	}
 
-	r := router.Load(middleware.InitRedis())
+	//Load all the router
+	r := router.Load()
 
-	r.Run(":" + port()) // listen and serve on 0.0.0.0:8080
+	fmt.Printf("Run as [%s] environment\n", env)
+	fmt.Printf("Listen and serve on %s\n", port())
+	r.Run(":" + port())
 }
 
 //获取端口号

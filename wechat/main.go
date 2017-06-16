@@ -8,11 +8,9 @@ import (
 	"school-helper/config"
 )
 
-//处理微信相关的逻辑
-//wechat 模块下分类型处理各项事件
-//之后微信接受到消息，需要处理业务逻辑，分相应的业务到相应的模块
+//Wechat handler, handle all of the task about wechat
 func WechatHandler(c *gin.Context) {
-	//配置微信参数
+
 	appID, _ := config.Configure.String("WECHAT_APP_ID")
 	appSecret, _ := config.Configure.String("WECHAT_APP_SECRET")
 	token, _ := config.Configure.String("WECHAT_TOKEN")
@@ -26,11 +24,11 @@ func WechatHandler(c *gin.Context) {
 	}
 	wc := wechat.NewWechat(wechatOption)
 
-	// 传入request和responseWriter
+	// Param is request and responseWriter
 	server := wc.GetServer(c.Request, c.Writer)
-	//设置接收消息的处理方法
+	//set message handler
 	server.SetMessageHandler(func(msg message.MixMessage) *message.Reply {
-
+		//Get user's openid
 		openid := server.GetOpenID()
 
 		switch msg.MsgType {
@@ -45,13 +43,14 @@ func WechatHandler(c *gin.Context) {
 		return nil
 	})
 
-	//处理消息接收以及回复
+	//Handle message receive and reply
 	err := server.Serve()
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	//发送回复的消息
+
+	//Send the message
 	server.Send()
 }
 

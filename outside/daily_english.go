@@ -4,39 +4,85 @@ import (
 	"encoding/json"
 	"github.com/labstack/gommon/log"
 	"github.com/silenceper/wechat/util"
+	"school-helper/store"
+	"time"
 )
 
 type DailyEnglish struct {
 	Content     string `json:"content"`
-	Note        string `json:"translation"` //神坑，此处字段是反过来的，我也很无奈啊[无辜脸]
+	Note        string `json:"translation"` //Fuck，Note and Translation fields is not ordered.
 	Translation string `json:"note"`
 	Picture     string `json:"picture"`
 	Dateline    string `json:"dateline"`
 }
 
-func GetDailyEnglish() DailyEnglish {
-	date := "" //TODO 此处为空则默认为当天
-	data := getDailyEnglishFromAPI(date)
+var keyPrefix = "outside:daily_english:"
 
-	var result DailyEnglish
-	err := json.Unmarshal(data, &result)
-	if err != nil {
-		log.Fatal(err)
+func GetDailyEnglish() DailyEnglish {
+	date := "" //TODO If date is empty, it means today
+
+	tf := time.Now().Format("2006-01-02")
+	redisKey := keyPrefix + tf
+
+	result := new(DailyEnglish)
+	//Try
+	for i := 0; i < 3; i++ {
+		data := get(redisKey, date)
+
+		err := json.Unmarshal(data, result)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		if validate(result) {
+			return *result
+		}
 	}
 
-	return result
+	return *result
 }
 
-//TODO 加入数据校验之后，每日只需要请求一次API，其余从redis直接获取
+func get(key, date string) []byte {
+	data, err := store.RedisClient.Get(key).Result()
 
-//从API获取数据
+	var ret []byte
+
+	if err == store.RedisNil || err != nil {
+		//The key does not exists
+		ret = getDailyEnglishFromAPI(date)
+		_ = set(key, ret)
+		return ret
+	} else {
+		return []byte(data)
+	}
+
+}
+
+//Get data from API
 func getDailyEnglishFromAPI(date string) []byte {
-	api_url := "http://open.iciba.com/dsapi?" + date
-	ret, err := util.HTTPGet(api_url)
+	apiUrl := "http://open.iciba.com/dsapi?" + date
+	ret, err := util.HTTPGet(apiUrl)
 	if err != nil {
 		log.Fatal(err)
 		return nil
 	}
 
 	return ret
+}
+
+func validate(d *DailyEnglish) bool {
+	if len(d.Content) > 0 && len(d.Dateline) > 0 && len(d.Translation) > 0 && len(d.Picture) > 0 {
+		return true
+	}
+	return false
+
+}
+
+func set(key string, data []byte) (err error) {
+	err = store.RedisClient.Set(key, string(data), 0).Err()
+	return
+}
+
+func clear(key string) {
+	store.RedisClient.Del(key).Err()
 }

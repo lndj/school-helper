@@ -2,7 +2,7 @@
 development:
   redis:
     addr: 127.0.0.1:6389
-    password: "luoning"
+    password: luowei2008
     db: 0
 
   #  Environment
@@ -16,7 +16,7 @@ development:
 production:
   redis:
     addr: 127.0.0.1:6389
-    password: "luoning"
+    password: luowei2008
     db: 0
 
   #  Environment
