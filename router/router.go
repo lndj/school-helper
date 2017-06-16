@@ -2,12 +2,13 @@ package router
 
 import (
 	"fmt"
-	"gopkg.in/gin-gonic/gin.v1"
 	"net/http"
-	"os"
-	"path/filepath"
+	"gopkg.in/gin-gonic/gin.v1"
+
 	"school-helper/config"
 	"school-helper/wechat"
+	"os"
+	"path/filepath"
 )
 
 //Loads all the router
@@ -24,19 +25,14 @@ func Load(middleware ...gin.HandlerFunc) *gin.Engine {
 			"message": "pong",
 		})
 	})
-	//TODO 统一获取
-	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
-	if err != nil {
-		os.Exit(9)
-	}
-	r.StaticFile("/favicon.ico", dir+"/assets/favicon.ico")
+	appRoot, _ := os.Getwd()
+	favicon := filepath.Join(appRoot, "/assets/favicon.ico")
+	r.StaticFile("/favicon.ico", favicon)
 
 	r.Any("/wechat", wechat.WechatHandler)
 
 	r.GET("/", func(c *gin.Context) {
-
 		fmt.Println(config.Configure.String("redis.addr"))
-
 		c.String(200, "This is a Wechat Server, powered by Golang.")
 	})
 

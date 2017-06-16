@@ -6,14 +6,10 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/labstack/gommon/log"
 	"gopkg.in/gin-gonic/gin.v1"
 
 	"school-helper/router"
 	"school-helper/router/middleware"
-
-	"school-helper/config"
-	"school-helper/store"
 )
 
 const defaultPort = "8080"
@@ -27,8 +23,6 @@ var (
 
 func main() {
 	ConfigRuntime()
-	InitConfig()
-	InitStore()
 	StartGin()
 }
 
@@ -36,20 +30,6 @@ func ConfigRuntime() {
 	nuCPU := runtime.NumCPU()
 	runtime.GOMAXPROCS(nuCPU)
 	fmt.Printf("Running with %d CPUs\n", nuCPU)
-}
-
-//Init the Configure instance
-func InitConfig() {
-	err := config.InitConfigInstance()
-	if err != nil {
-		log.Fatalf("Init config error: %v", err)
-	}
-}
-
-//Init Storage instance
-func InitStore() {
-	//redis
-	store.InitRedisClient()
 }
 
 func StartGin() {

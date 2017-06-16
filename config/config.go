@@ -1,37 +1,39 @@
 package config
 
 import (
-	cg "github.com/olebedev/config"
 	"io/ioutil"
 	"os"
 	"path/filepath"
+
+	cg "github.com/olebedev/config"
 )
 
 var Configure *cg.Config
 
-func InitConfigInstance() error {
-	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
-	if err != nil {
-		os.Exit(9)
-	}
-	cfgFile, err := ioutil.ReadFile(dir + "/config/config.yaml")
-	if err != nil {
-		return err
-	}
+func init() {
+	appRoot, _ := os.Getwd()
+	configFile := filepath.Join(appRoot, "config/config.yaml")
+	cfgFile, err := ioutil.ReadFile(configFile)
+	checkErr(err)
+
 	cfg, err := cg.ParseYaml(string(cfgFile))
-	if err != nil {
-		return err
-	}
-	//根据当前环境变量获取配置
+	checkErr(err)
+
+	//Parse the Env into config
+	cfg.Env()
+
+	//Get config by environment
 	env := os.Getenv("ENV")
 	if len(env) == 0 {
-		return err
+		panic(err)
 	}
 
 	Configure, err = cfg.Get(env)
-	if err != nil {
-		return err
-	}
+	checkErr(err)
+}
 
-	return nil
+func checkErr(err error) {
+	if err != nil {
+		panic(err)
+	}
 }
