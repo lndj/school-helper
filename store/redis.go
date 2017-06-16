@@ -7,11 +7,10 @@ import (
 
 var RedisClient *redis.Client
 
-func InitRedisClient() error {
-
+func init() {
 	redisConfig, err := config.Configure.Map("redis")
 	if err != nil {
-		return err
+		panic(err)
 	}
 
 	option := redis.Options{
@@ -21,6 +20,4 @@ func InitRedisClient() error {
 		PoolSize: 10,
 	}
 	RedisClient = redis.NewClient(&option)
-
-	return nil
 }
