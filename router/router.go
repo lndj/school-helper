@@ -8,7 +8,7 @@ import (
 	"school-helper/config"
 	"school-helper/wechat"
 	"os"
-	"path"
+	"path/filepath"
 )
 
 //Loads all the router
@@ -26,7 +26,7 @@ func Load(middleware ...gin.HandlerFunc) *gin.Engine {
 		})
 	})
 	appRoot, _ := os.Getwd()
-	favicon := path.Join(appRoot, "/assets/favicon.ico")
+	favicon := filepath.Join(appRoot, "/assets/favicon.ico")
 	r.StaticFile("/favicon.ico", favicon)
 
 	r.Any("/wechat", wechat.WechatHandler)

@@ -3,7 +3,7 @@ package config
 import (
 	"io/ioutil"
 	"os"
-	"path"
+	"path/filepath"
 
 	cg "github.com/olebedev/config"
 )
@@ -12,7 +12,7 @@ var Configure *cg.Config
 
 func init() {
 	appRoot, _ := os.Getwd()
-	configFile := path.Join(appRoot, "config/config.yaml")
+	configFile := filepath.Join(appRoot, "config/config.yaml")
 	cfgFile, err := ioutil.ReadFile(configFile)
 	checkErr(err)
 
