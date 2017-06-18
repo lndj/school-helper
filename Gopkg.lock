@@ -51,6 +51,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/nlopes/slack"
+  packages = ["."]
+  revision = "f243c7602fdf906248fc1f165284daa4e4d2d09e"
+
+[[projects]]
+  branch = "master"
   name = "github.com/olebedev/config"
   packages = ["."]
   revision = "afea898d27c7d17376ecc60c7c2e73c76b40060e"
@@ -78,7 +84,7 @@
 [[projects]]
   branch = "master"
   name = "golang.org/x/net"
-  packages = ["context"]
+  packages = ["context","websocket"]
   revision = "d1e1b351919c6738fdeb9893d5c998b161464f0c"
 
 [[projects]]
@@ -108,6 +114,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "5aed46803c01258fa2f6ffcbbca099297fde3ca7c8195bd14c093970262a1a99"
+  inputs-digest = "94f8ab2b3b32be38010c3622f1ce1168685c7a7737eca349a91f797f7fc96e92"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -6,14 +6,25 @@ import (
 	"runtime"
 
 	"gopkg.in/gin-gonic/gin.v1"
+	"github.com/nlopes/slack"
 
 	"school-helper/router"
+	"school-helper/alert"
 )
 
-const defaultPort = "8080"
+const (
+	defaultPort = "8080"
+
+	botToken          = "xoxb-199470707778-xtG6Emt6iDttpCkK4XUJyVx0"
+	botID             = "U5VDULTNW"
+	clientSecret      = "2daa0356b329ac2bb889b40cb5c33dda"
+	verificationToken = "Uc3kpfOLChVlR2n08Y2fikuj"
+	channelID         = "C5VDCLP98"
+)
 
 func main() {
 	ConfigRuntime()
+	startSlackApp()
 	StartGin()
 }
 
@@ -37,11 +48,22 @@ func StartGin() {
 	r.Run(":" + port())
 }
 
-//获取端口号
 func port() string {
 	port := os.Getenv("PORT")
 	if len(port) == 0 {
 		port = defaultPort
 	}
 	return port
+}
+
+func startSlackApp() {
+	client := slack.New(botToken)
+	slackListener := &alert.SlackListener{
+		Client:    client,
+		BotID:     botID,
+		ChannelID: channelID,
+	}
+	alert.SL = slackListener
+	fmt.Printf("SlackListener is running on channel:%s\n", channelID)
+	go slackListener.ListenAndResponse()
 }

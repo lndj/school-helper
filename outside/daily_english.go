@@ -25,7 +25,7 @@ func GetDailyEnglish() DailyEnglish {
 	redisKey := keyPrefix + tf
 
 	result := new(DailyEnglish)
-	//Try
+	//Retry 3 times
 	for i := 0; i < 3; i++ {
 		data := get(redisKey, date)
 
@@ -36,6 +36,8 @@ func GetDailyEnglish() DailyEnglish {
 
 		if validate(result) {
 			return *result
+		} else {
+			clear(redisKey)
 		}
 	}
 
@@ -50,7 +52,7 @@ func get(key, date string) []byte {
 	if err == store.RedisNil || err != nil {
 		//The key does not exists
 		ret = getDailyEnglishFromAPI(date)
-		_ = set(key, ret)
+		set(key, ret)
 		return ret
 	} else {
 		return []byte(data)

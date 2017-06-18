@@ -3,12 +3,13 @@ package router
 import (
 	"fmt"
 	"net/http"
+	"os"
+	"path/filepath"
 	"gopkg.in/gin-gonic/gin.v1"
 
 	"school-helper/config"
 	"school-helper/wechat"
-	"os"
-	"path/filepath"
+	"school-helper/alert"
 )
 
 //Loads all the router
@@ -35,6 +36,8 @@ func Load(middleware ...gin.HandlerFunc) *gin.Engine {
 		fmt.Println(config.Configure.String("redis.addr"))
 		c.String(200, "This is a Wechat Server, powered by Golang.")
 	})
+
+	r.POST("/slack", alert.InteractionHandler)
 
 	return r
 }

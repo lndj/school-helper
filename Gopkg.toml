@@ -20,3 +20,7 @@
    branch = "master"
    name = "github.com/olebedev/config"
    source = "https://github.com/olebedev/config.git"
+
+ [[constraint]]
+   branch = "master"
+   name = "github.com/nlopes/slack"
