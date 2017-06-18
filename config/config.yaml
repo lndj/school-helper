@@ -4,26 +4,10 @@ development:
     addr: 127.0.0.1:6389
     password: luowei2008
     db: 0
-
-  #  Environment
-  WECHAT_APP_ID:
-  WECHAT_APP_SECRET:
-  WECHAT_TOKEN:
-  ENV:
-  WECHAT_AES_KEY:
-
 # Production config
 production:
   redis:
     addr: 127.0.0.1:6389
     password: luowei2008
     db: 0
-
-  #  Environment
-  WECHAT_APP_ID:
-  WECHAT_APP_SECRET:
-  WECHAT_TOKEN:
-  ENV:
-  WECHAT_AES_KEY:
-
 

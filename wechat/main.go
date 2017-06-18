@@ -10,17 +10,11 @@ import (
 
 //Wechat handler, handle all of the task about wechat
 func WechatHandler(c *gin.Context) {
-
-	appID, _ := config.Configure.String("WECHAT_APP_ID")
-	appSecret, _ := config.Configure.String("WECHAT_APP_SECRET")
-	token, _ := config.Configure.String("WECHAT_TOKEN")
-	encodingAESKey, _ := config.Configure.String("WECHAT_AES_KEY")
-
 	wechatOption := &wechat.Config{
-		AppID:          appID,
-		AppSecret:      appSecret,
-		Token:          token,
-		EncodingAESKey: encodingAESKey,
+		AppID:          config.Environment.WechatAppID,
+		AppSecret:      config.Environment.WechatAppSecret,
+		Token:          config.Environment.WechatToken,
+		EncodingAESKey: config.Environment.WechatAesKey,
 	}
 	wc := wechat.NewWechat(wechatOption)
 

@@ -1,6 +1,7 @@
 package alert
 
 import (
+	"time"
 	"fmt"
 	"strings"
 	"io/ioutil"
@@ -10,14 +11,13 @@ import (
 
 	"gopkg.in/gin-gonic/gin.v1"
 	"github.com/nlopes/slack"
-	"time"
+	"school-helper/config"
 )
 
 type InteractionData struct {
 }
 
 func InteractionHandler(c *gin.Context) {
-
 	buf, err := ioutil.ReadAll(c.Request.Body)
 	if err != nil {
 		fmt.Printf("[ERROR] Failed to read request body: %s", err)
@@ -40,7 +40,7 @@ func InteractionHandler(c *gin.Context) {
 	}
 
 	// Only accept message from slack with valid token
-	if message.Token != "Uc3kpfOLChVlR2n08Y2fikuj" {
+	if message.Token != config.Environment.SlackVerifyToken {
 		fmt.Printf("[ERROR] Invalid token: %s", message.Token)
 		c.JSON(http.StatusUnauthorized, gin.H{"status": "error"})
 		return
@@ -94,6 +94,7 @@ func InteractionHandler(c *gin.Context) {
 
 }
 
+//Response to slack
 func responseMessage(c *gin.Context, original slack.Message, title, value string) {
 	original.Attachments[0].Actions = []slack.AttachmentAction{} // empty buttons
 	original.Attachments[0].Fields = []slack.AttachmentField{

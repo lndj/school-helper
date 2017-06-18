@@ -24,3 +24,8 @@
  [[constraint]]
    branch = "master"
    name = "github.com/nlopes/slack"
+
+ [[constraint]]
+    branch = "master"
+    name = "github.com/caarlos0/env"
+

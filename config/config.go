@@ -20,14 +20,12 @@ func init() {
 	checkErr(err)
 
 	//Get config by environment
-	env := os.Getenv("ENV")
+	env := os.Getenv("APP_ENV")
 	if len(env) == 0 {
 		panic(err)
 	}
 
 	Configure, err = cfg.Get(env)
-	//Parse the Env into config
-	Configure.Env()
 	checkErr(err)
 }
 

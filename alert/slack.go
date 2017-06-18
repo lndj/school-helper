@@ -13,10 +13,6 @@ const (
 	actionSelect = "select"
 	actionStart  = "start"
 	actionCancel = "cancel"
-
-	ChannelID = "C5VDCLP98"
-	TeamID    = "T29BGV9CM"
-	RobotID   = "U5W5JJ8K0"
 )
 
 var SL *SlackListener
@@ -111,20 +107,16 @@ func (s *SlackListener) handleMessageEvent(ev *slack.MessageEvent) error {
 }
 
 func SendMessage(text string) {
-
 	params := slack.PostMessageParameters{}
 	attachment := slack.Attachment{
 		Pretext: "Task result",
 		Text:    "some text",
-		// Uncomment the following part to send a field too
-		/*
-			Fields: []slack.AttachmentField{
-				slack.AttachmentField{
-					Title: "a",
-					Value: "no",
-				},
+		Fields: []slack.AttachmentField{
+			slack.AttachmentField{
+				Title: "a",
+				Value: "no",
 			},
-		*/
+		},
 	}
 
 	params.Attachments = []slack.Attachment{attachment}

@@ -5,22 +5,15 @@ import (
 	"os"
 	"runtime"
 
-	"gopkg.in/gin-gonic/gin.v1"
 	"github.com/nlopes/slack"
+	"gopkg.in/gin-gonic/gin.v1"
 
-	"school-helper/router"
 	"school-helper/alert"
+	"school-helper/router"
+	"school-helper/config"
 )
 
-const (
-	defaultPort = "8080"
-
-	botToken          = "xoxb-199470707778-xtG6Emt6iDttpCkK4XUJyVx0"
-	botID             = "U5VDULTNW"
-	clientSecret      = "2daa0356b329ac2bb889b40cb5c33dda"
-	verificationToken = "Uc3kpfOLChVlR2n08Y2fikuj"
-	channelID         = "C5VDCLP98"
-)
+const defaultPort = "8080"
 
 func main() {
 	ConfigRuntime()
@@ -49,7 +42,7 @@ func StartGin() {
 }
 
 func port() string {
-	port := os.Getenv("PORT")
+	port := config.Environment.AppPort
 	if len(port) == 0 {
 		port = defaultPort
 	}
@@ -57,13 +50,14 @@ func port() string {
 }
 
 func startSlackApp() {
-	client := slack.New(botToken)
+	client := slack.New(config.Environment.SlackBotToken)
 	slackListener := &alert.SlackListener{
 		Client:    client,
-		BotID:     botID,
-		ChannelID: channelID,
+		BotID:     config.Environment.SlackBotId,
+		ChannelID: config.Environment.SlackChannelID,
 	}
+	//Create a slack client instance
 	alert.SL = slackListener
-	fmt.Printf("SlackListener is running on channel:%s\n", channelID)
+	fmt.Printf("SlackListener is running on channel:%s\n", config.Environment.SlackChannelID)
 	go slackListener.ListenAndResponse()
 }
