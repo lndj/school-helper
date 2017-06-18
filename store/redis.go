@@ -2,7 +2,7 @@ package store
 
 import (
 	"github.com/go-redis/redis"
-	"school-helper/config"
+	"github.com/lndj/school-helper/config"
 )
 
 var RedisClient *redis.Client

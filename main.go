@@ -8,9 +8,9 @@ import (
 	"github.com/nlopes/slack"
 	"gopkg.in/gin-gonic/gin.v1"
 
-	"school-helper/alert"
-	"school-helper/router"
-	"school-helper/config"
+	"github.com/lndj/school-helper/alert"
+	"github.com/lndj/school-helper/router"
+	"github.com/lndj/school-helper/config"
 )
 
 const defaultPort = "8080"

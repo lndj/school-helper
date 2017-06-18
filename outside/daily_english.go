@@ -1,11 +1,13 @@
 package outside
 
 import (
+	"time"
 	"encoding/json"
+
 	"github.com/labstack/gommon/log"
 	"github.com/silenceper/wechat/util"
-	"school-helper/store"
-	"time"
+
+	"github.com/lndj/school-helper/store"
 )
 
 type DailyEnglish struct {

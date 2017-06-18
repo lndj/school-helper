@@ -11,7 +11,7 @@ import (
 
 	"gopkg.in/gin-gonic/gin.v1"
 	"github.com/nlopes/slack"
-	"school-helper/config"
+	"github.com/lndj/school-helper/config"
 )
 
 type InteractionData struct {

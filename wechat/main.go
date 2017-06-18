@@ -5,7 +5,7 @@ import (
 	"github.com/silenceper/wechat"
 	"github.com/silenceper/wechat/message"
 	"gopkg.in/gin-gonic/gin.v1"
-	"school-helper/config"
+	"github.com/lndj/school-helper/config"
 )
 
 //Wechat handler, handle all of the task about wechat

@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 	"gopkg.in/gin-gonic/gin.v1"
 
-	"school-helper/config"
-	"school-helper/wechat"
-	"school-helper/alert"
+	"github.com/lndj/school-helper/config"
+	"github.com/lndj/school-helper/wechat"
+	"github.com/lndj/school-helper/alert"
 )
 
 //Loads all the router
