@@ -18,8 +18,7 @@ const (
 var SL *SlackListener
 
 type SlackListener struct {
-	Client *slack.Client
-
+	Client    *slack.Client
 	BotID     string
 	ChannelID string
 }

@@ -56,10 +56,9 @@ func get(key, date string) []byte {
 		ret = getDailyEnglishFromAPI(date)
 		set(key, ret)
 		return ret
-	} else {
-		return []byte(data)
 	}
 
+	return []byte(data)
 }
 
 //Get data from API
@@ -79,7 +78,6 @@ func validate(d *DailyEnglish) bool {
 		return true
 	}
 	return false
-
 }
 
 func set(key string, data []byte) (err error) {

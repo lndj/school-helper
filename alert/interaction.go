@@ -11,6 +11,7 @@ import (
 
 	"gopkg.in/gin-gonic/gin.v1"
 	"github.com/nlopes/slack"
+
 	"github.com/lndj/school-helper/config"
 )
 

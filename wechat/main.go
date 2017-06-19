@@ -2,9 +2,11 @@ package wechat
 
 import (
 	"fmt"
+
 	"github.com/silenceper/wechat"
 	"github.com/silenceper/wechat/message"
 	"gopkg.in/gin-gonic/gin.v1"
+
 	"github.com/lndj/school-helper/config"
 )
 
@@ -88,5 +90,4 @@ func eventHandler(v message.MixMessage) *message.Reply {
 	default:
 		return nil
 	}
-
 }

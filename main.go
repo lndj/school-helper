@@ -9,25 +9,25 @@ import (
 	"gopkg.in/gin-gonic/gin.v1"
 
 	"github.com/lndj/school-helper/alert"
-	"github.com/lndj/school-helper/router"
 	"github.com/lndj/school-helper/config"
+	"github.com/lndj/school-helper/router"
 )
 
 const defaultPort = "8080"
 
 func main() {
-	ConfigRuntime()
+	configRuntime()
 	startSlackApp()
-	StartGin()
+	startGin()
 }
 
-func ConfigRuntime() {
+func configRuntime() {
 	nuCPU := runtime.NumCPU()
 	runtime.GOMAXPROCS(nuCPU)
 	fmt.Printf("Running with %d CPUs\n", nuCPU)
 }
 
-func StartGin() {
+func startGin() {
 	env := os.Getenv("ENV")
 	if env == "production" {
 		gin.SetMode(gin.ReleaseMode)

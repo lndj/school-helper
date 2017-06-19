@@ -33,16 +33,14 @@ func getReplyFromTuling(content, uid string) []byte {
 		"info":   {content},
 		"userid": {uid},
 	})
+	defer resp.Body.Close()
 	if err != nil {
 		return nil
 	}
-	defer resp.Body.Close()
-
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return nil
 	}
 
 	return body
-
 }
