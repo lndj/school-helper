@@ -1,14 +1,16 @@
 package wechat
 
 import (
-	"github.com/go-redis/redis"
 	"time"
+
+	"github.com/go-redis/redis"
 )
 
 type Redis struct {
 	conn *redis.Client
 }
 
+//The redis client factory
 func NewRedis() *redis.Client {
 	op := redis.Options{
 		Addr:     "127.0.0.1:6389",

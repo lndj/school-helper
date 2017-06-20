@@ -1,8 +1,8 @@
 package outside
 
 import (
-	"time"
 	"encoding/json"
+	"time"
 
 	"github.com/labstack/gommon/log"
 	"github.com/silenceper/wechat/util"
@@ -20,6 +20,9 @@ type DailyEnglish struct {
 
 var keyPrefix = "outside:daily_english:"
 
+//The daily english
+//Every day cache the content to redis
+//If get data failed, retry 3 times at most.
 func GetDailyEnglish() DailyEnglish {
 	date := "" //TODO If date is empty, it means today
 

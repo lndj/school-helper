@@ -7,6 +7,7 @@ import (
 
 var RedisClient *redis.Client
 
+//When get a value from redis and the key is not exist, the error is RedisNil
 var RedisNil = redis.Nil
 
 func init() {

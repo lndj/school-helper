@@ -2,15 +2,18 @@ package wechat
 
 import (
 	"github.com/silenceper/wechat/message"
+
 	"github.com/lndj/school-helper/outside"
 )
 
+//When user subscribe, run this
 func Subscribe() *message.Reply {
 	content := "欢迎你的关注哦！"
 	return ReplyText(content)
 
 }
 
+//Click event handler
 func Click(v message.MixMessage) *message.Reply {
 	if v.EventKey == "每日一句" {
 		return eventDailyEnglish()
@@ -22,8 +25,7 @@ func Click(v message.MixMessage) *message.Reply {
 
 }
 
-//金山词霸每日一句
-//图文方式发送
+//The CiBa api, send by News
 func eventDailyEnglish() *message.Reply {
 	de := outside.GetDailyEnglish()
 	desc := de.Content + "\n\n" + de.Translation

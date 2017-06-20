@@ -8,6 +8,7 @@ import (
 	cg "github.com/olebedev/config"
 )
 
+//The config instance from yaml file.
 var Configure *cg.Config
 
 func init() {

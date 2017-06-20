@@ -1,8 +1,8 @@
 package alert
 
 import (
-	"log"
 	"fmt"
+	"log"
 	"strings"
 
 	"github.com/nlopes/slack"
@@ -15,16 +15,18 @@ const (
 	actionCancel = "cancel"
 )
 
+//The slack listener isntance
 var SL *SlackListener
 
+//Handle slack event
 type SlackListener struct {
 	Client    *slack.Client
 	BotID     string
 	ChannelID string
 }
 
-// ListenAndResponse listens slack events and response
-// particular messages. It replies by slack message button.
+//ListenAndResponse listens slack events and response
+//particular messages. It replies by slack message button.
 func (s *SlackListener) ListenAndResponse() {
 	rtm := s.Client.NewRTM()
 
@@ -42,7 +44,7 @@ func (s *SlackListener) ListenAndResponse() {
 	}
 }
 
-// handleMessageEvent handles message events.
+//handleMessageEvent handles message events.
 func (s *SlackListener) handleMessageEvent(ev *slack.MessageEvent) error {
 
 	// Only response in specific channel. Ignore else.
@@ -105,6 +107,7 @@ func (s *SlackListener) handleMessageEvent(ev *slack.MessageEvent) error {
 	return nil
 }
 
+//Send message to slack
 func SendMessage(text string) {
 	params := slack.PostMessageParameters{}
 	attachment := slack.Attachment{

@@ -1,23 +1,21 @@
 package alert
 
 import (
-	"time"
+	"encoding/json"
 	"fmt"
-	"strings"
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"encoding/json"
+	"strings"
+	"time"
 
-	"gopkg.in/gin-gonic/gin.v1"
 	"github.com/nlopes/slack"
+	"gopkg.in/gin-gonic/gin.v1"
 
 	"github.com/lndj/school-helper/config"
 )
 
-type InteractionData struct {
-}
-
+//InteractionHandler, the slack interaction api handler
 func InteractionHandler(c *gin.Context) {
 	buf, err := ioutil.ReadAll(c.Request.Body)
 	if err != nil {

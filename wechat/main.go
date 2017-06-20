@@ -10,7 +10,7 @@ import (
 	"github.com/lndj/school-helper/config"
 )
 
-//Wechat handler, handle all of the task about wechat
+//WechatHandler, handle all of the task about wechat
 func WechatHandler(c *gin.Context) {
 	wechatOption := &wechat.Config{
 		AppID:          config.Environment.WechatAppID,

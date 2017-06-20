@@ -4,6 +4,7 @@ import (
 	"github.com/silenceper/wechat/message"
 )
 
+//The News message router
 func ReplyNews(title, description, pic_url, url string) *message.Reply {
 
 	articles := make([]*message.Article, 1)

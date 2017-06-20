@@ -2,11 +2,14 @@ package config
 
 import (
 	"fmt"
+
 	"github.com/caarlos0/env"
 )
 
+//The Environment instance
 var Environment *EnvConfig
 
+//The Environment variable
 type EnvConfig struct {
 	//app
 	AppEnv  string `env:"APP_ENV,required"`

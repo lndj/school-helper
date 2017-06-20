@@ -2,14 +2,14 @@ package router
 
 import (
 	"fmt"
+	"gopkg.in/gin-gonic/gin.v1"
 	"net/http"
 	"os"
 	"path/filepath"
-	"gopkg.in/gin-gonic/gin.v1"
 
+	"github.com/lndj/school-helper/alert"
 	"github.com/lndj/school-helper/config"
 	"github.com/lndj/school-helper/wechat"
-	"github.com/lndj/school-helper/alert"
 )
 
 //Loads all the router
