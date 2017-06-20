@@ -15,7 +15,7 @@ const (
 	actionCancel = "cancel"
 )
 
-//The slack listener isntance
+//The slack listener instance
 var SL *SlackListener
 
 //Handle slack event
