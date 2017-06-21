@@ -2,10 +2,11 @@ package alert
 
 import (
 	"fmt"
-	"log"
 	"strings"
 
 	"github.com/nlopes/slack"
+
+	"github.com/lndj/school-helper/utils"
 )
 
 const (
@@ -38,7 +39,7 @@ func (s *SlackListener) ListenAndResponse() {
 		switch ev := msg.Data.(type) {
 		case *slack.MessageEvent:
 			if err := s.handleMessageEvent(ev); err != nil {
-				log.Printf("[ERROR] Failed to handle message: %s", err)
+				utils.Logger.Fatalf("Failed to handle message: %s", err)
 			}
 		}
 	}
@@ -49,7 +50,7 @@ func (s *SlackListener) handleMessageEvent(ev *slack.MessageEvent) error {
 
 	// Only response in specific channel. Ignore else.
 	if ev.Channel != s.ChannelID {
-		log.Printf("%s %s", ev.Channel, ev.Msg.Text)
+		utils.Logger.Debugf("%s %s", ev.Channel, ev.Msg.Text)
 		return nil
 	}
 
@@ -127,5 +128,5 @@ func SendMessage(text string) {
 		fmt.Printf("%s\n", err)
 		return
 	}
-	fmt.Printf("Message successfully sent to channel %s at %s", channelID, timestamp)
+	utils.Logger.Infof("Message successfully sent to channel %s at %s", channelID, timestamp)
 }

@@ -32,22 +32,10 @@
   revision = "fec3b39b059c0f88fa6b20f5ed012b1aa203a8b4"
 
 [[projects]]
-  name = "github.com/labstack/gommon"
-  packages = ["color","log"]
-  revision = "1121fd3e243c202482226a7afe4dcd07ffc4139a"
-  version = "v0.2.1"
-
-[[projects]]
   branch = "master"
   name = "github.com/manucorporat/sse"
   packages = ["."]
   revision = "ee05b128a739a0fb76c7ebd3ae4810c1de808d6d"
-
-[[projects]]
-  name = "github.com/mattn/go-colorable"
-  packages = ["."]
-  revision = "d228849504861217f796da67fae4f6e347643f15"
-  version = "v0.0.7"
 
 [[projects]]
   branch = "master"
@@ -76,16 +64,10 @@
   source = "https://github.com/silenceper/wechat.git"
 
 [[projects]]
-  branch = "master"
-  name = "github.com/valyala/bytebufferpool"
+  name = "github.com/sirupsen/logrus"
   packages = ["."]
-  revision = "e746df99fe4a3986f4d4f79e13c1e0117ce9c2f7"
-
-[[projects]]
-  branch = "master"
-  name = "github.com/valyala/fasttemplate"
-  packages = ["."]
-  revision = "dcecefd839c4193db0d35b88ec65b4c12d360ab0"
+  revision = "202f25545ea4cf9b191ff7f846df5d87c9382c2b"
+  version = "v1.0.0"
 
 [[projects]]
   branch = "master"
@@ -98,6 +80,18 @@
   name = "golang.org/x/sys"
   packages = ["unix"]
   revision = "0b25a408a50076fbbcae6b7ac0ea5fbb0b085e79"
+
+[[projects]]
+  name = "gopkg.in/airbrake/gobrake.v2"
+  packages = ["."]
+  revision = "668876711219e8b0206e2994bf0a59d889c775aa"
+  version = "v2.0.9"
+
+[[projects]]
+  name = "gopkg.in/gemnasium/logrus-airbrake-hook.v2"
+  packages = ["."]
+  revision = "e928b033a891c0175fb643d5aa0779e86325eb12"
+  version = "v2.1.2"
 
 [[projects]]
   branch = "master"
@@ -120,6 +114,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "13ed0036ef614a61975d4420d1a028048124b0c81696d5739345fa7630570b6d"
+  inputs-digest = "c5694c9cb3fc2a11d0ade382cabcdcf0b1ffa002af828633ec03ebc40375ca16"
   solver-name = "gps-cdcl"
   solver-version = 1

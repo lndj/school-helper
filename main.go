@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"os"
 	"runtime"
 
@@ -11,11 +12,14 @@ import (
 	"github.com/lndj/school-helper/alert"
 	"github.com/lndj/school-helper/config"
 	"github.com/lndj/school-helper/router"
+	"github.com/lndj/school-helper/utils"
 )
 
 const defaultPort = "8080"
 
 func main() {
+	defer closeLogFile()
+
 	configRuntime()
 	startSlackApp()
 	startGin()
@@ -49,6 +53,7 @@ func port() string {
 	return port
 }
 
+//Start the SlackListener
 func startSlackApp() {
 	client := slack.New(config.Environment.SlackBotToken)
 	slackListener := &alert.SlackListener{
@@ -60,4 +65,14 @@ func startSlackApp() {
 	alert.SL = slackListener
 	fmt.Printf("SlackListener is running on channel:%s\n", config.Environment.SlackChannelID)
 	go slackListener.ListenAndResponse()
+}
+
+//When exit, close the log file.
+func closeLogFile() {
+	if file, ok := utils.Logger.Out.(*os.File); ok {
+		file.Sync()
+		file.Close()
+	} else if handler, ok := utils.Logger.Out.(io.Closer); ok {
+		handler.Close()
+	}
 }
