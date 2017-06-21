@@ -29,3 +29,6 @@
     branch = "master"
     name = "github.com/caarlos0/env"
 
+ [[constraint]]
+     version = "v1.0.0"
+     name = "github.com/sirupsen/logrus"

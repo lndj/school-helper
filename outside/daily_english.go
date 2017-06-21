@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/labstack/gommon/log"
 	"github.com/silenceper/wechat/util"
 
 	"github.com/lndj/school-helper/store"
+	"github.com/lndj/school-helper/utils"
 )
 
 type DailyEnglish struct {
@@ -36,7 +36,7 @@ func GetDailyEnglish() DailyEnglish {
 
 		err := json.Unmarshal(data, result)
 		if err != nil {
-			log.Fatal(err)
+			utils.Logger.Fatal(err)
 		}
 
 		if validate(result) {
@@ -69,7 +69,7 @@ func getDailyEnglishFromAPI(date string) []byte {
 	apiUrl := "http://open.iciba.com/dsapi?" + date
 	ret, err := util.HTTPGet(apiUrl)
 	if err != nil {
-		log.Fatal(err)
+		utils.Logger.Fatal(err)
 		return nil
 	}
 

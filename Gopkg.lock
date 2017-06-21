@@ -76,6 +76,12 @@
   source = "https://github.com/silenceper/wechat.git"
 
 [[projects]]
+  name = "github.com/sirupsen/logrus"
+  packages = ["."]
+  revision = "202f25545ea4cf9b191ff7f846df5d87c9382c2b"
+  version = "v1.0.0"
+
+[[projects]]
   branch = "master"
   name = "github.com/valyala/bytebufferpool"
   packages = ["."]
@@ -120,6 +126,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "13ed0036ef614a61975d4420d1a028048124b0c81696d5739345fa7630570b6d"
+  inputs-digest = "3789f7e7f3e10563509ad28204e70d01034a03298b68a0a304e8dbc51041e0fd"
   solver-name = "gps-cdcl"
   solver-version = 1

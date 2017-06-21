@@ -4,6 +4,9 @@ development:
     addr: 127.0.0.1:6389
     password: luowei2008
     db: 0
+
+  log_file: "/Users/ning/go/src/github.com/lndj/school-helper/app_runtime.log"
+
 # Production config
 production:
   redis:
@@ -11,3 +14,4 @@ production:
     password: luowei2008
     db: 0
 
+  log_file: "/home/caddy_logs/app_runtime.log"
