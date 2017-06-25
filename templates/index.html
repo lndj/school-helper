@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The school helper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.25/css/uikit.min.css"/>
+</head>
+<body>
+
+<nav class="uk-navbar-container uk-margin" uk-navbar="mode: click">
+    <div class="uk-navbar-left">
+
+        <ul class="uk-navbar-nav">
+            <li class="uk-active"><a href="/">Home</a></li>
+            <li>
+                <a href="#">Parent</a>
+                <div class="uk-navbar-dropdown">
+                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                        <li class="uk-active"><a href="#">Active</a></li>
+                        <li><a href="#">Item</a></li>
+                        <li><a href="#">Item</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="#">Item</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+<div class="uk-container">
+
+    <form>
+        <fieldset class="uk-fieldset">
+            <legend class="uk-legend">About you</legend>
+            <div class="uk-margin">
+                <input class="uk-input" type="text" placeholder="{{.ip}}">
+            </div>
+            <div class="uk-margin">
+                <select class="uk-select">
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+            <div class="uk-margin">
+                <textarea class="uk-textarea" rows="5" placeholder="Textarea"></textarea>
+            </div>
+        </fieldset>
+        <button class="uk-button uk-button-default" type="button">Submit</button>
+    </form>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.25/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.25/js/uikit-icons.min.js"></script>
+
+</body>
+</html>

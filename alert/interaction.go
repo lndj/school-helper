@@ -1,17 +1,18 @@
 package alert
 
 import (
-	"bytes"
-	"encoding/json"
+	"time"
 	"fmt"
-	"github.com/nlopes/slack"
-	"gopkg.in/gin-gonic/gin.v1"
+	"bytes"
+	"strings"
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os/exec"
-	"strings"
-	"time"
+
+	"github.com/nlopes/slack"
+	"gopkg.in/gin-gonic/gin.v1"
 
 	"github.com/lndj/school-helper/config"
 	"github.com/lndj/school-helper/utils"
