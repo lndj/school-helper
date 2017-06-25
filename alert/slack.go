@@ -80,8 +80,8 @@ func (s *SlackListener) handleMessageEvent(ev *slack.MessageEvent) error {
 						Value: "reload-caddy",
 					},
 					{
-						Text:  "Show the net stat",
-						Value: "show-netstat",
+						Text:  "Show the dstat",
+						Value: "dstat",
 					},
 				},
 			},
@@ -110,22 +110,13 @@ func (s *SlackListener) handleMessageEvent(ev *slack.MessageEvent) error {
 
 //Send message to slack
 func SendMessage(text string) {
-	params := slack.PostMessageParameters{}
-	attachment := slack.Attachment{
-		Pretext: "Task result",
-		Text:    "some text",
-		Fields: []slack.AttachmentField{
-			slack.AttachmentField{
-				Title: "a",
-				Value: "no",
-			},
-		},
-	}
+	param := slack.PostMessageParameters{}
+	param.Markdown = true
 
-	params.Attachments = []slack.Attachment{attachment}
-	channelID, timestamp, err := SL.Client.PostMessage(SL.ChannelID, text, params)
+	channelID, timestamp, err := SL.Client.PostMessage(SL.ChannelID, text, param)
+
 	if err != nil {
-		fmt.Printf("%s\n", err)
+		utils.Logger.Errorf("%s\n", err)
 		return
 	}
 	utils.Logger.Infof("Message successfully sent to channel %s at %s", channelID, timestamp)
