@@ -119,7 +119,7 @@ func runCommand(command string) error {
 		done <- cmd.Wait()
 	}()
 	select {
-	case <-time.After(3 * time.Second):
+	case <-time.After(5 * time.Second):
 		if err := cmd.Process.Kill(); err != nil {
 			utils.Logger.Fatal("Failed to kill: ", err)
 		}
