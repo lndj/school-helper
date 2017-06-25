@@ -9,5 +9,4 @@ func Index(c *gin.Context) {
 	c.HTML(200, "index.html", gin.H{
 		"ip": c.ClientIP(),
 	})
-
 }
