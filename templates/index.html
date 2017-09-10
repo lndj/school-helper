@@ -34,19 +34,20 @@
         <fieldset class="uk-fieldset">
             <legend class="uk-legend">About you</legend>
             <div class="uk-margin">
-                <input class="uk-input" type="text" placeholder="{{.ip}}">
+                <input class="uk-input" type="text" name="ip" id="ip" placeholder="{{.ip}}">
             </div>
             <div class="uk-margin">
-                <select class="uk-select">
-                    <option>Male</option>
-                    <option>Female</option>
+                <select class="uk-select" name="sex" id="sex">
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
                 </select>
             </div>
             <div class="uk-margin">
-                <textarea class="uk-textarea" rows="5" placeholder="Say something about you..."></textarea>
+                <textarea class="uk-textarea" rows="5" id="content" name="content"
+                          placeholder="Say something about you..."></textarea>
             </div>
         </fieldset>
-        <button class="uk-button uk-button-default" type="button">Submit</button>
+        <button class="uk-button uk-button-default" type="button" id="button">Submit</button>
     </form>
 
 </div>
@@ -54,5 +55,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.25/js/uikit.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.25/js/uikit-icons.min.js"></script>
+
+<script>
+
+    $("#button").click(function submit_form() {
+        sex = $('#sex').attr("value")
+        content = $('#content').attr("value")
+
+        $.ajax({
+            type: "POST",
+            url: '/',
+            data: {sex: "1", content: "shdfsiohfoisho "},
+            success: function (e) {
+                console.log(e)
+            }
+        })
+    })
+
+</script>
+
 </body>
 </html>

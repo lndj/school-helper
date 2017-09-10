@@ -8,8 +8,8 @@ import (
 	"gopkg.in/gin-gonic/gin.v1"
 
 	"github.com/lndj/school-helper/alert"
-	"github.com/lndj/school-helper/wechat"
 	"github.com/lndj/school-helper/controller"
+	"github.com/lndj/school-helper/wechat"
 )
 
 //Loads all the router
@@ -35,6 +35,7 @@ func Load(middleware ...gin.HandlerFunc) *gin.Engine {
 	r.Any("/wechat", wechat.WechatHandler)
 
 	r.GET("/", controller.Index)
+	r.POST("/", controller.IndexPost)
 
 	r.POST("/slack", alert.InteractionHandler)
 
