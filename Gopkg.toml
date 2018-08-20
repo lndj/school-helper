@@ -33,7 +33,7 @@
      version = "v1.0.0"
      name = "github.com/sirupsen/logrus"
 
- [[constraint]]
-      version = "v2.1.2"
-      name = "gopkg.in/gemnasium/logrus-airbrake-hook"
-
+# [[constraint]]
+#      version = "v2.1.2"
+#      name = "gopkg.in/gemnasium/logrus-airbrake-hook"
+#
