@@ -21,4 +21,4 @@ ENV APP_PORT 5050
 
 EXPOSE 5050
 
-CMD ["school_helper"]
+CMD ["./school_helper"]
