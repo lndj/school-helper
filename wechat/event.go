@@ -18,10 +18,14 @@ func Click(v message.MixMessage) *message.Reply {
 	if v.EventKey == "每日一句" {
 		return eventDailyEnglish()
 	}
+	picUrl := "http://ww1.sinaimg.cn/large/65209136gw1f7vhjw95eqj20wt0zk40z.jpg"
 
-	pic_url := "http://ww1.sinaimg.cn/large/65209136gw1f7vhjw95eqj20wt0zk40z.jpg"
+	if v.EventKey == "空闲教室" {
+		ReplyNews("真棒", "给你个表单玩玩", picUrl, "http://lzjtuxzs.applinzi.com")
+	}
+
 	url := "https://github.com/lndj"
-	return ReplyNews("我的GitHub", "这就是我的GayHub哦", pic_url, url)
+	return ReplyNews("我的GitHub", "这就是我的GayHub哦", picUrl, url)
 
 }
 
