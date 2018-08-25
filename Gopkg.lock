@@ -8,10 +8,10 @@
   revision = "1952afaa557dc08e8e0d89eafab110fb501c1a2b"
 
 [[projects]]
+  branch = "master"
   name = "github.com/caarlos0/env"
   packages = ["."]
-  revision = "0cf029d5748c52beb2c9d20c81880cb4bdf8f788"
-  version = "v3.0"
+  revision = "bc122c26dc2d72f6904a9e0cb940ca508660067c"
 
 [[projects]]
   branch = "master"
@@ -70,6 +70,12 @@
   version = "v1.0.0"
 
 [[projects]]
+  name = "github.com/technoweenie/multipartstreamer"
+  packages = ["."]
+  revision = "a90a01d73ae432e2611d178c18367fbaa13e0154"
+  version = "v1.0.1"
+
+[[projects]]
   branch = "master"
   name = "golang.org/x/net"
   packages = ["context","websocket"]
@@ -80,18 +86,6 @@
   name = "golang.org/x/sys"
   packages = ["unix"]
   revision = "0b25a408a50076fbbcae6b7ac0ea5fbb0b085e79"
-
-[[projects]]
-  name = "gopkg.in/airbrake/gobrake.v2"
-  packages = ["."]
-  revision = "668876711219e8b0206e2994bf0a59d889c775aa"
-  version = "v2.0.9"
-
-[[projects]]
-  name = "gopkg.in/gemnasium/logrus-airbrake-hook.v2"
-  packages = ["."]
-  revision = "e928b033a891c0175fb643d5aa0779e86325eb12"
-  version = "v2.1.2"
 
 [[projects]]
   branch = "master"
@@ -106,6 +100,12 @@
   revision = "5f57d2222ad794d0dffb07e664ea05e2ee07d60c"
 
 [[projects]]
+  name = "gopkg.in/telegram-bot-api.v4"
+  packages = ["."]
+  revision = "0e0af0c480ea98e982d5f4d45fb39577c6ab1e3e"
+  version = "v4.6.2"
+
+[[projects]]
   branch = "v2"
   name = "gopkg.in/yaml.v2"
   packages = ["."]
@@ -114,6 +114,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "c5694c9cb3fc2a11d0ade382cabcdcf0b1ffa002af828633ec03ebc40375ca16"
+  inputs-digest = "8e05237f3ee32eaeff83d916321e03da6c8ad966de9001c9d009e88c986d6ece"
   solver-name = "gps-cdcl"
   solver-version = 1

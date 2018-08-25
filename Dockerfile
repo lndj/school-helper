@@ -1,7 +1,6 @@
 FROM golang:1.9-alpine
 
-RUN mkdir -p $(go env GOPATH)/src/github.com/lndj/school_helper \
-    && apk add --no-cache git mercurial \
+RUN apk add --no-cache git mercurial \
     && go get -d -u github.com/golang/dep \
     && cd $(go env GOPATH)/src/github.com/golang/dep \
     && DEP_LATEST=$(git describe --abbrev=0 --tags) \
@@ -22,6 +21,9 @@ ENV WECHAT_APP_ID wxd653c72470f4d162
 ENV WECHAT_APP_SECRET e9dff29eda25bc8fe913977c5b6487c6
 ENV WECHAT_TOKEN luoning
 ENV WECHAT_AES_KEY De8QfNB6VogPoxeJVJoVSPkzrpwSrUxejdCbHdCTYKu
+ENV TELEGRAM_API_TOKEN 681460788:AAGQaoVEHQeckvUBdI9JS8a7kb6wGFuGZqI
+ENV TELEGRAM_CHAT_ID 645141896
+ENV TELEGRAM_IS_DEBUG true
 
 EXPOSE 5050
 

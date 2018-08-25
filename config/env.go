@@ -27,6 +27,11 @@ type EnvConfig struct {
 	SlackClientSecret string `env:"SLACK_CLIENT_SECRET"`
 	SlackVerifyToken  string `env:"SLACK_VERIFY_TOKEN"`
 	SlackChannelID    string `env:"SLACK_CHANNEL_ID"`
+
+	// Telegram
+	TelegramChatID   int64  `env:"TELEGRAM_CHAT_ID"`
+	TelegramIsDebug  bool   `env:"TELEGRAM_IS_DEBUG" envDefault:"false"`
+	TelegramApiToken string `env:"TELEGRAM_API_TOKEN"`
 }
 
 func init() {

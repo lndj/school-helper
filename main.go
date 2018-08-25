@@ -22,6 +22,7 @@ func main() {
 
 	configRuntime()
 	startSlackApp()
+	alert.InitTelegram()
 	startGin()
 }
 
