@@ -20,12 +20,8 @@ func Click(v message.MixMessage) *message.Reply {
 	}
 	picUrl := "http://ww1.sinaimg.cn/large/65209136gw1f7vhjw95eqj20wt0zk40z.jpg"
 
-	if v.EventKey == "空闲教室" {
-		ReplyNews("真棒", "给你个表单玩玩", picUrl, "http://lzjtuxzs.applinzi.com")
-	}
-
 	url := "https://github.com/lndj"
-	return ReplyNews("我的GitHub", "这就是我的GayHub哦", picUrl, url)
+	return ReplyNews("小助手正在规划中", "请期待一个全新的小助手吧，如果你有好的想法，请留言给小助手", picUrl, url)
 
 }
 
